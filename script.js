@@ -15,22 +15,6 @@ const fakeReplies = [
   'Ты классный 👍'
 ];
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  const userMessage = input.value.trim();
-  if (!userMessage) return;
-
-  appendMessage(userMessage, 'chat-message');
-  input.value = '';
-  input.focus();
-
-  setTimeout(() => {
-    const randomReply = fakeReplies[Math.floor(Math.random() * fakeReplies.length)];
-    appendMessage(randomReply, 'chat-message bot-message');
-  }, 800);
-});
-
 function appendMessage(text, className) {
   const message = document.createElement('div');
   message.className = className;
@@ -38,3 +22,34 @@ function appendMessage(text, className) {
   chatWindow.appendChild(message);
   chatWindow.scrollTop = chatWindow.scrollHeight;
 }
+
+function saveChat() {
+  localStorage.setItem('chatMessages', chatWindow.innerHTML);
+}
+
+function loadChat() {
+  const saved = localStorage.getItem('chatMessages');
+  if (saved) {
+    chatWindow.innerHTML = saved;
+  }
+}
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const userMessage = input.value.trim();
+  if (!userMessage) return;
+
+  appendMessage(userMessage, 'chat-message');
+  saveChat();
+  input.value = '';
+  input.focus();
+
+  setTimeout(() => {
+    const randomReply = fakeReplies[Math.floor(Math.random() * fakeReplies.length)];
+    appendMessage(randomReply, 'chat-message bot-message');
+    saveChat();
+  }, 800);
+});
+
+loadChat();
