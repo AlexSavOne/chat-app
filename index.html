@@ -6,21 +6,37 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="chat-container">
-      <div id="chat-window" class="chat-window"></div>
+    <div class="chat-container" id="chat-container">
+      <header class="chat-header">
+        <h1>Мини-чат</h1>
+        <div class="controls">
+          <button id="toggle-theme" aria-label="Переключить тему">🌓</button>
+          <button id="clear-chat" aria-label="Очистить чат">🗑️</button>
+        </div>
+      </header>
 
-      <form id="chat-form">
+      <div
+        id="chat-window"
+        class="chat-window"
+        role="log"
+        aria-live="polite"
+      ></div>
+
+      <form id="chat-form" aria-label="Форма отправки сообщения">
         <input
           type="text"
           id="messageInput"
           placeholder="Напишите сообщение..."
           autocomplete="off"
           required
+          aria-label="Поле ввода сообщения"
         />
-        <button type="submit">Отправить</button>
+        <button type="submit" aria-label="Отправить сообщение">
+          Отправить
+        </button>
       </form>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="js/chat.js"></script>
   </body>
 </html>
