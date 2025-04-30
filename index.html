@@ -2,41 +2,42 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <title>Мини-чат</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мини-Чат</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="chat-container" id="chat-container">
-      <header class="chat-header">
-        <h1>Мини-чат</h1>
+    <div id="chat-container" class="chat-container" data-theme="light">
+      <div class="chat-header">
+        <h1>Мини-Чат</h1>
         <div class="controls">
-          <button id="toggle-theme" aria-label="Переключить тему">🌓</button>
-          <button id="clear-chat" aria-label="Очистить чат">🗑️</button>
+          <button id="toggle-theme" aria-label="Сменить тему">🌓<span>Сменить тему</span></button>
+          <button id="clear-chat" aria-label="Очистить чат">🗑️<span>Очистить чат</span></button>
         </div>
-      </header>
-
-      <div
-        id="chat-window"
-        class="chat-window"
-        role="log"
-        aria-live="polite"
-      ></div>
-
-      <form id="chat-form" aria-label="Форма отправки сообщения">
-        <input
-          type="text"
-          id="messageInput"
-          placeholder="Напишите сообщение..."
-          autocomplete="off"
-          required
-          aria-label="Поле ввода сообщения"
-        />
-        <button type="submit" aria-label="Отправить сообщение">
-          Отправить
-        </button>
+      </div>
+      <div id="chat-window" class="chat-window"></div>
+      <form id="chat-form" class="chat-form">
+        <div class="file-input-wrapper">
+          <input type="file" id="file-input" accept="image/*,.pdf,.doc,.docx,.txt">
+          <button type="button" class="file-input-button" id="file-button" aria-label="Прикрепить файл">📎 Прикрепить файл</button>
+        </div>
+        <input type="text" id="messageInput" placeholder="Введите сообщение..." aria-label="Сообщение">
+        <button type="submit" aria-label="Отправить">➤</button>
       </form>
+      <footer class="chat-footer">
+        <p>Created by <a href="https://github.com/AlexSavOne" target="_blank" rel="noopener">AlexSavOne</a></p>
+      </footer>
     </div>
-
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <h2>Подтверждение</h2>
+        <p>Вы уверены, что хотите очистить всю историю чата?</p>
+        <div class="modal-buttons">
+          <button id="modal-cancel" class="modal-button cancel">Отмена</button>
+          <button id="modal-confirm" class="modal-button confirm">Очистить</button>
+        </div>
+      </div>
+    </div>
     <script type="module" src="js/chat.js"></script>
   </body>
 </html>
